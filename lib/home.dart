@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:jogo_da_velha/gameField.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -123,12 +124,16 @@ class _HomeState extends State<Home> {
               ), // Fim do radio dos tabuleiros
               ElevatedButton(
                   onPressed: () {
-                    setState(() {
-                      userName = _controller.text;
-                      print("Nome de Usuário: " + userName);
-                      print("Escolha de simbolo: " + symbolChoice!);
-                      print("Escolha de tamanho: " + sizeChoice!);
-                    });
+                    userName = _controller.text;
+                    print("Nome de Usuário: " + userName);
+                    print("Escolha de simbolo: " + symbolChoice!);
+                    print("Escolha de tamanho: " + sizeChoice!);
+
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return GameField(
+                          _controller.text, symbolChoice!, sizeChoice!);
+                    }));
                   },
                   child: const Text("Iniciar Jogo."))
             ],
